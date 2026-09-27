@@ -31,8 +31,8 @@ st.write("A comprehensive web application with **Rule-Based Clinical Guidance** 
 
 # 2. Patient Details & Settings in Sidebar
 st.sidebar.header("📋 Patient Details")
-patient_name = st.sidebar.text_input("Full Name", value="Alex Smith")
-patient_age = st.sidebar.number_input("Age (years)", min_value=1, max_value=120, value=28, step=1)
+patient_name = st.sidebar.text_input("Full Name", value="")
+patient_age = st.sidebar.number_input("Age (years)", min_value=1, max_value=120, value=, step=1)
 patient_gender = st.sidebar.selectbox("Gender", options=["Male", "Female"])
 
 # AI Model Configuration (loaded from environment)
