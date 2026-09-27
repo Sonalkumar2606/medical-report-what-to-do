@@ -33,9 +33,9 @@ patient_name = st.sidebar.text_input("Full Name", value="Alex Smith")
 patient_age = st.sidebar.number_input("Age (years)", min_value=1, max_value=120, value=28, step=1)
 patient_gender = st.sidebar.selectbox("Gender", options=["Male", "Female"])
 
-with st.sidebar.expander("⚙️ AI Model Configuration", expanded=False):
-    ai_model = st.text_input("Model ID", value=DEFAULT_MODEL, help="OpenRouter Model Identifier")
-    ai_api_key = st.text_input("OpenRouter API Key", value=DEFAULT_API_KEY, type="password")
+# AI Model Configuration (loaded from environment)
+ai_model = DEFAULT_MODEL
+ai_api_key = DEFAULT_API_KEY
 
 # 3. Manual Parameter Inputs on Main Page with 'Not in report / Don't know'
 st.subheader("🔬 Enter Blood Test Parameters")
@@ -563,6 +563,8 @@ HEALTH_ADVICE = {
 # 4. Helper Function: OpenRouter AI Client
 def get_ai_dual_analysis(messages, model, api_key):
     """Calls OpenRouter API and returns full response text."""
+    if not api_key or not api_key.strip():
+        return "ERROR: OpenRouter API key nahi mili. Kripya environment variable ya .env file me OPENROUTER_API_KEY set karein."
     headers = {
         "Authorization": f"Bearer {api_key.strip()}",
         "Content-Type": "application/json",
