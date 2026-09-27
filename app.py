@@ -17,8 +17,10 @@ elif test_env_path.exists():
 else:
     load_dotenv()
 
+#DEFAULT_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 DEFAULT_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
-DEFAULT_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-oss-120b")
+#DEFAULT_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-oss-120b")
+DEFAULT_MODEL = st.secrets.get("OPENROUTER_MODEL", "openai/gpt-oss-120b")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # 1. Page Configuration & Title
